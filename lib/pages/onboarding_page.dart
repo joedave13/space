@@ -3,8 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:space/theme.dart';
 import 'package:space/widgets/onboarding_item.dart';
 
-class OnboardingPage extends StatelessWidget {
+class OnboardingPage extends StatefulWidget {
   const OnboardingPage({Key? key}) : super(key: key);
+
+  @override
+  State<OnboardingPage> createState() => _OnboardingPageState();
+}
+
+class _OnboardingPageState extends State<OnboardingPage> {
+  int currentIndex = 0;
+  CarouselController controller = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +39,14 @@ class OnboardingPage extends StatelessWidget {
               height: double.infinity,
               viewportFraction: 1,
               enableInfiniteScroll: false,
+              initialPage: currentIndex,
+              onPageChanged: (index, _) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
             ),
+            carouselController: controller,
           )),
           Container(
             margin: EdgeInsets.symmetric(
@@ -59,7 +74,7 @@ class OnboardingPage extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: kBlackColor,
+                        color: currentIndex == 0 ? kBlackColor : kLineDarkColor,
                       ),
                     ),
                     Container(
@@ -70,7 +85,7 @@ class OnboardingPage extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: kLineDarkColor,
+                        color: currentIndex == 1 ? kBlackColor : kLineDarkColor,
                       ),
                     ),
                     Container(
@@ -81,13 +96,15 @@ class OnboardingPage extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: kLineDarkColor,
+                        color: currentIndex == 2 ? kBlackColor : kLineDarkColor,
                       ),
                     ),
                   ],
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    controller.nextPage();
+                  },
                   child: Text(
                     'NEXT',
                     style: blackTextStyle.copyWith(

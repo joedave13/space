@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
         body: Center(
           child: Text(
             'Space',
-            style: TextStyle(
+            style: yellowTextStyle.copyWith(
               fontSize: 24,
-              color: kBlueColor,
+              fontWeight: semiBold,
             ),
           ),
         ),

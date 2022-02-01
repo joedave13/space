@@ -13,6 +13,8 @@ class SigninPage extends StatelessWidget {
         ),
         children: [
           title(),
+          emailInput(),
+          passwordInput(),
         ],
       ),
     );
@@ -58,6 +60,62 @@ class SigninPage extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget emailInput() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: 48,
+      ),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: kWhiteGrayColor,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: TextFormField(
+        decoration: InputDecoration.collapsed(
+          hintText: 'Email',
+          hintStyle: grayTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: semiBold,
+          ),
+        ),
+        keyboardType: TextInputType.emailAddress,
+      ),
+    );
+  }
+
+  Widget passwordInput() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: 32,
+      ),
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: kWhiteGrayColor,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Row(
+        children: [
+          Expanded(
+            child: TextFormField(
+              decoration: InputDecoration.collapsed(
+                hintText: 'Password',
+                hintStyle: grayTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: semiBold,
+                ),
+              ),
+              obscureText: true,
+            ),
+          ),
+          Icon(
+            Icons.visibility_outlined,
+            color: kGrayColor,
           ),
         ],
       ),

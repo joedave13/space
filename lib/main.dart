@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:space/theme.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,8 +12,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: Image.asset(
-            'assets/logo_dark.png',
+          child: Text(
+            'Space',
+            style: TextStyle(
+              fontSize: 24,
+              color: kBlueColor,
+            ),
           ),
         ),
       ),

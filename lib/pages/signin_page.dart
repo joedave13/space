@@ -11,6 +11,12 @@ class SigninPage extends StatefulWidget {
 
 class _SigninPageState extends State<SigninPage> {
   late FToast fToast;
+  final emailController = TextEditingController(text: '');
+  final passwordController = TextEditingController(text: '');
+
+  bool isShowPasswordError = false;
+  bool isRememberMe = false;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -118,6 +124,7 @@ class _SigninPageState extends State<SigninPage> {
           ),
         ),
         keyboardType: TextInputType.emailAddress,
+        controller: emailController,
       ),
     );
   }
@@ -147,6 +154,7 @@ class _SigninPageState extends State<SigninPage> {
                     ),
                   ),
                   obscureText: true,
+                  controller: passwordController,
                 ),
               ),
               Icon(
@@ -156,13 +164,15 @@ class _SigninPageState extends State<SigninPage> {
             ],
           ),
         ),
-        SizedBox(
-          height: 8,
-        ),
-        Text(
-          'Password anda salah',
-          style: redTextStyle,
-        ),
+        isShowPasswordError
+            ? Container(
+                margin: EdgeInsets.only(top: 8),
+                child: Text(
+                  'Password anda salah',
+                  style: redTextStyle,
+                ),
+              )
+            : Container(),
       ],
     );
   }
@@ -176,8 +186,12 @@ class _SigninPageState extends State<SigninPage> {
             width: 20,
             height: 20,
             child: Checkbox(
-              value: false,
-              onChanged: (value) {},
+              value: isRememberMe,
+              onChanged: (value) {
+                setState(() {
+                  isRememberMe = value!;
+                });
+              },
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4),
               ),
@@ -204,13 +218,27 @@ class _SigninPageState extends State<SigninPage> {
       margin: EdgeInsets.only(top: 32),
       child: TextButton(
         onPressed: () {
-          fToast.showToast(
-            child: errorToast(),
-            toastDuration: Duration(
-              seconds: 2,
-            ),
-            gravity: ToastGravity.BOTTOM,
-          );
+          setState(() {
+            isLoading = true;
+          });
+
+          Future.delayed(Duration(seconds: 2), () {
+            setState(() {
+              isLoading = false;
+            });
+            if (passwordController.text != '12345') {
+              setState(() {
+                isShowPasswordError = true;
+              });
+              fToast.showToast(
+                child: errorToast(),
+                toastDuration: Duration(
+                  seconds: 2,
+                ),
+                gravity: ToastGravity.BOTTOM,
+              );
+            }
+          });
         },
         style: TextButton.styleFrom(
           backgroundColor: kBlackColor,
@@ -218,13 +246,18 @@ class _SigninPageState extends State<SigninPage> {
             borderRadius: BorderRadius.circular(14),
           ),
         ),
-        child: Text(
-          'Login',
-          style: whiteTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: semiBold,
-          ),
-        ),
+        child: isLoading
+            ? CircularProgressIndicator(
+                color: kWhiteColor,
+                backgroundColor: kGrayColor,
+              )
+            : Text(
+                'Login',
+                style: whiteTextStyle.copyWith(
+                  fontSize: 18,
+                  fontWeight: semiBold,
+                ),
+              ),
       ),
     );
   }

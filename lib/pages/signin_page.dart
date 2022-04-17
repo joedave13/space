@@ -1,8 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:space/theme.dart';
 
-class SigninPage extends StatelessWidget {
+class SigninPage extends StatefulWidget {
   const SigninPage({Key? key}) : super(key: key);
+
+  @override
+  State<SigninPage> createState() => _SigninPageState();
+}
+
+class _SigninPageState extends State<SigninPage> {
+  late FToast fToast;
+
+  @override
+  void initState() {
+    super.initState();
+    fToast = FToast();
+    fToast.init(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -108,35 +123,47 @@ class SigninPage extends StatelessWidget {
   }
 
   Widget passwordInput() {
-    return Container(
-      margin: EdgeInsets.only(
-        top: 32,
-      ),
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: kWhiteGrayColor,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextFormField(
-              decoration: InputDecoration.collapsed(
-                hintText: 'Password',
-                hintStyle: grayTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: semiBold,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: EdgeInsets.only(
+            top: 32,
+          ),
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: kWhiteGrayColor,
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextFormField(
+                  decoration: InputDecoration.collapsed(
+                    hintText: 'Password',
+                    hintStyle: grayTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                  obscureText: true,
                 ),
               ),
-              obscureText: true,
-            ),
+              Icon(
+                Icons.visibility_outlined,
+                color: kGrayColor,
+              ),
+            ],
           ),
-          Icon(
-            Icons.visibility_outlined,
-            color: kGrayColor,
-          ),
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 8,
+        ),
+        Text(
+          'Password anda salah',
+          style: redTextStyle,
+        ),
+      ],
     );
   }
 
@@ -176,7 +203,15 @@ class SigninPage extends StatelessWidget {
       width: double.infinity,
       margin: EdgeInsets.only(top: 32),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          fToast.showToast(
+            child: errorToast(),
+            toastDuration: Duration(
+              seconds: 2,
+            ),
+            gravity: ToastGravity.BOTTOM,
+          );
+        },
         style: TextButton.styleFrom(
           backgroundColor: kBlackColor,
           shape: RoundedRectangleBorder(
@@ -238,6 +273,23 @@ class SigninPage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget errorToast() {
+    return Container(
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        color: kRedColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Text(
+        'Password Salah',
+        style: whiteTextStyle.copyWith(
+          fontSize: 16,
+          fontWeight: semiBold,
+        ),
       ),
     );
   }

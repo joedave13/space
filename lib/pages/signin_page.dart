@@ -15,6 +15,8 @@ class SigninPage extends StatelessWidget {
           title(),
           emailInput(),
           passwordInput(),
+          rememberCheckbox(),
+          loginButton(),
         ],
       ),
     );
@@ -118,6 +120,60 @@ class SigninPage extends StatelessWidget {
             color: kGrayColor,
           ),
         ],
+      ),
+    );
+  }
+
+  Widget rememberCheckbox() {
+    return Container(
+      margin: EdgeInsets.only(top: 32),
+      child: Row(
+        children: [
+          SizedBox(
+            width: 20,
+            height: 20,
+            child: Checkbox(
+              value: false,
+              onChanged: (value) {},
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          Text(
+            'Remember Me',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget loginButton() {
+    return Container(
+      height: 56,
+      width: double.infinity,
+      margin: EdgeInsets.only(top: 32),
+      child: TextButton(
+        onPressed: () {},
+        style: TextButton.styleFrom(
+          backgroundColor: kBlackColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+        ),
+        child: Text(
+          'Login',
+          style: whiteTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: semiBold,
+          ),
+        ),
       ),
     );
   }

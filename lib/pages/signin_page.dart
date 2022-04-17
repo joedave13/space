@@ -17,6 +17,22 @@ class SigninPage extends StatelessWidget {
           passwordInput(),
           rememberCheckbox(),
           loginButton(),
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(
+                top: 24,
+              ),
+              child: Text(
+                'OR',
+                style: grayTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: semiBold,
+                ),
+              ),
+            ),
+          ),
+          loginWithGoogleButton(),
+          registerButton(),
         ],
       ),
     );
@@ -174,6 +190,54 @@ class SigninPage extends StatelessWidget {
             fontWeight: semiBold,
           ),
         ),
+      ),
+    );
+  }
+
+  Widget loginWithGoogleButton() {
+    return Container(
+      height: 56,
+      width: double.infinity,
+      margin: EdgeInsets.only(top: 21),
+      child: TextButton(
+        onPressed: () {},
+        child: Text(
+          'Login with Google',
+          style: blackTextStyle.copyWith(
+            fontSize: 18,
+            fontWeight: semiBold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget registerButton() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: 48,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Don't have an account?",
+            style: grayTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          TextButton(
+            onPressed: () {},
+            child: Text(
+              'Register',
+              style: blueTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -283,7 +283,7 @@ class _SigninPageState extends State<SigninPage> {
   Widget registerButton() {
     return Container(
       margin: EdgeInsets.only(
-        top: 48,
+        top: 35,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

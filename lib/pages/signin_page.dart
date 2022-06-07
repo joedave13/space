@@ -237,6 +237,8 @@ class _SigninPageState extends State<SigninPage> {
                 ),
                 gravity: ToastGravity.BOTTOM,
               );
+            } else {
+              Navigator.pushNamed(context, '/home');
             }
           });
         },

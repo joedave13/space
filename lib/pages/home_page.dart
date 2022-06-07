@@ -1,8 +1,17 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:space/theme.dart';
+import 'package:space/widgets/home_category_item.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int categoryIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +116,118 @@ class HomePage extends StatelessWidget {
                       'assets/icon_search.png',
                       width: 24,
                       color: kGrayColor,
+                    ),
+                  ],
+                ),
+              ),
+
+              // CATEGORY TITLE
+              Container(
+                margin: EdgeInsets.only(
+                  top: 30,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 24,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Category',
+                      style: blackTextStyle.copyWith(
+                        fontSize: 20,
+                        fontWeight: semiBold,
+                      ),
+                    ),
+                    Text(
+                      'Show All',
+                      style: blackTextStyle,
+                    ),
+                  ],
+                ),
+              ),
+
+              // CATEGORY SLIDER
+              Container(
+                margin: EdgeInsets.only(
+                  top: 25,
+                ),
+                child: CarouselSlider(
+                  items: [
+                    HomeCategoryItem(
+                      title: 'Minimalis Chair',
+                      subtitle: 'Chair',
+                      imageUrl: 'assets/image_product_category1.png',
+                    ),
+                    HomeCategoryItem(
+                      title: 'Minimalis Table',
+                      subtitle: 'Table',
+                      imageUrl: 'assets/image_product_category2.png',
+                    ),
+                    HomeCategoryItem(
+                      title: 'Minimalis Chair',
+                      subtitle: 'Chair',
+                      imageUrl: 'assets/image_product_category3.png',
+                    ),
+                  ],
+                  options: CarouselOptions(
+                    height: 123,
+                    enableInfiniteScroll: false,
+                    viewportFraction: 1,
+                    onPageChanged: (value, _) {
+                      setState(() {
+                        categoryIndex = value;
+                      });
+                    },
+                  ),
+                ),
+              ),
+
+              // CATEGORY CAROUSEL INDICATOR
+              Container(
+                margin: EdgeInsets.only(
+                  top: 13,
+                ),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 24,
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 10,
+                      height: 10,
+                      margin: EdgeInsets.only(
+                        right: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:
+                            categoryIndex == 0 ? kBlackColor : kLineDarkColor,
+                      ),
+                    ),
+                    Container(
+                      width: 10,
+                      height: 10,
+                      margin: EdgeInsets.only(
+                        right: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:
+                            categoryIndex == 1 ? kBlackColor : kLineDarkColor,
+                      ),
+                    ),
+                    Container(
+                      width: 10,
+                      height: 10,
+                      margin: EdgeInsets.only(
+                        right: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color:
+                            categoryIndex == 2 ? kBlackColor : kLineDarkColor,
+                      ),
                     ),
                   ],
                 ),

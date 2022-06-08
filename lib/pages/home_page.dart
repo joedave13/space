@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:space/theme.dart';
 import 'package:space/widgets/home_category_item.dart';
+import 'package:space/widgets/home_popular_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -228,6 +229,82 @@ class _HomePageState extends State<HomePage> {
                         color:
                             categoryIndex == 2 ? kBlackColor : kLineDarkColor,
                       ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // POPULAR SECTION
+              Container(
+                margin: EdgeInsets.only(
+                  top: 24,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40),
+                  ),
+                  color: kWhiteColor,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(
+                        top: 24,
+                      ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 24,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Popular',
+                            style: blackTextStyle.copyWith(
+                              fontSize: 24,
+                              fontWeight: semiBold,
+                            ),
+                          ),
+                          Text(
+                            'Show All',
+                            style: blackTextStyle,
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    SizedBox(
+                      height: 310,
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          children: [
+                            HomePopularItem(
+                              title: 'Poan Chair',
+                              imageUrl: 'assets/image_product_popular1.png',
+                              price: 34,
+                              isWishlist: true,
+                            ),
+                            HomePopularItem(
+                              title: 'Poan Chair',
+                              imageUrl: 'assets/image_product_popular2.png',
+                              price: 34,
+                              isWishlist: false,
+                            ),
+                            HomePopularItem(
+                              title: 'Poan Chair',
+                              imageUrl: 'assets/image_product_popular3.png',
+                              price: 34,
+                              isWishlist: false,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 50,
                     ),
                   ],
                 ),

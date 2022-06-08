@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space/theme.dart';
+import 'package:space/widgets/recommendation_item.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -62,10 +63,45 @@ class SearchPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Center(
-        child: Text(
-          'Search Page',
+      body: ListView(
+        padding: EdgeInsets.symmetric(
+          horizontal: 24,
         ),
+        children: [
+          SizedBox(
+            height: 41,
+          ),
+          Text(
+            'Recommendation',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          RecommendationItem(
+            title: 'Poan Chair',
+            price: 34,
+            imageUrl: 'assets/image_product_list1.png',
+          ),
+          RecommendationItem(
+            title: 'Poan Chair',
+            price: 34,
+            imageUrl: 'assets/image_product_list2.png',
+          ),
+          RecommendationItem(
+            title: 'Poan Chair',
+            price: 34,
+            imageUrl: 'assets/image_product_list3.png',
+          ),
+          RecommendationItem(
+            title: 'Poan Chair',
+            price: 34,
+            imageUrl: 'assets/image_product_list4.png',
+          ),
+        ],
       ),
     );
   }

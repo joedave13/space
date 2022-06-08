@@ -92,33 +92,38 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
               // SEARCH BAR
-              Container(
-                margin: EdgeInsets.only(
-                  top: 30,
-                  left: 24,
-                  right: 24,
-                ),
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(14),
-                  color: kWhiteColor,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Search Funiture',
-                      style: grayTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/search');
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                    top: 30,
+                    left: 24,
+                    right: 24,
+                  ),
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(14),
+                    color: kWhiteColor,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Search Funiture',
+                        style: grayTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: semiBold,
+                        ),
                       ),
-                    ),
-                    Image.asset(
-                      'assets/icon_search.png',
-                      width: 24,
-                      color: kGrayColor,
-                    ),
-                  ],
+                      Image.asset(
+                        'assets/icon_search.png',
+                        width: 24,
+                        color: kGrayColor,
+                      ),
+                    ],
+                  ),
                 ),
               ),
 

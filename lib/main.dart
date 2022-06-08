@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:space/pages/home_page.dart';
 import 'package:space/pages/onboarding_page.dart';
+import 'package:space/pages/search_page.dart';
 import 'package:space/pages/signin_page.dart';
 import 'package:space/pages/splash_page.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         '/onboarding': (context) => OnboardingPage(),
         '/sign-in': (context) => SigninPage(),
         '/home': (context) => HomePage(),
+        '/search': (context) => SearchPage(),
       },
     );
   }

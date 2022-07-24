@@ -43,6 +43,10 @@ class SearchPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TextFormField(
+                          textInputAction: TextInputAction.go,
+                          onFieldSubmitted: (value) {
+                            Navigator.pushNamed(context, '/search-result');
+                          },
                           decoration: InputDecoration.collapsed(
                             hintText: 'Search furniture',
                           ),

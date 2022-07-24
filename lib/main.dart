@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:space/pages/home_page.dart';
 import 'package:space/pages/onboarding_page.dart';
 import 'package:space/pages/search_page.dart';
+import 'package:space/pages/search_result_page.dart';
 import 'package:space/pages/signin_page.dart';
 import 'package:space/pages/splash_page.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         '/sign-in': (context) => SigninPage(),
         '/home': (context) => HomePage(),
         '/search': (context) => SearchPage(),
+        '/search-result': (context) => SearchResultPage(),
       },
     );
   }

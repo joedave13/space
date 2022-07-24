@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space/theme.dart';
+import 'package:space/widgets/skeleteon_item.dart';
 
 class SearchResultPage extends StatelessWidget {
   const SearchResultPage({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class SearchResultPage extends StatelessWidget {
         appBar: PreferredSize(
           preferredSize: Size(
             double.infinity,
-            70,
+            110,
           ),
           child: AppBar(
             automaticallyImplyLeading: false,
@@ -74,6 +75,13 @@ class SearchResultPage extends StatelessWidget {
               ],
             ),
             bottom: TabBar(
+              indicatorColor: kBlackColor,
+              labelColor: kBlackColor,
+              labelStyle: blackTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+              isScrollable: true,
               tabs: [
                 Tab(
                   text: 'Chair',
@@ -91,12 +99,67 @@ class SearchResultPage extends StatelessWidget {
             ),
           ),
         ),
-        body: Center(
-          child: Text(
-            'Search Result Page',
-          ),
-        ),
+        body: TabBarView(children: [
+          buildBody(),
+          buildBody(),
+          buildBody(),
+          buildBody(),
+        ]),
       ),
     );
+  }
+
+  Widget buildBody() {
+    return ListView(
+      padding: EdgeInsets.symmetric(
+        horizontal: 24,
+      ),
+      children: [
+        SizedBox(
+          height: 30,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              'Result for : Poang',
+              style: blackTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+            Image.asset(
+              'assets/icon_list.png',
+              width: 24,
+              fit: BoxFit.cover,
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        buildLoading(),
+      ],
+    );
+  }
+
+  Widget buildLoading() {
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 18,
+      runSpacing: 18,
+      children: [
+        SkeletonItem(),
+        SkeletonItem(),
+        SkeletonItem(),
+        SkeletonItem(),
+        SkeletonItem(),
+        SkeletonItem(),
+      ],
+    );
+  }
+
+  Widget buildGrid() {
+    return Container();
   }
 }

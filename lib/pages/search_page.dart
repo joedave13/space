@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space/theme.dart';
-import 'package:space/widgets/recommendation_item.dart';
+import 'package:space/widgets/product_list_item.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -85,22 +85,22 @@ class SearchPage extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          RecommendationItem(
+          ProductListItem(
             title: 'Poan Chair',
             price: 34,
             imageUrl: 'assets/image_product_list1.png',
           ),
-          RecommendationItem(
+          ProductListItem(
             title: 'Poan Chair',
             price: 34,
             imageUrl: 'assets/image_product_list2.png',
           ),
-          RecommendationItem(
+          ProductListItem(
             title: 'Poan Chair',
             price: 34,
             imageUrl: 'assets/image_product_list3.png',
           ),
-          RecommendationItem(
+          ProductListItem(
             title: 'Poan Chair',
             price: 34,
             imageUrl: 'assets/image_product_list4.png',

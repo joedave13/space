@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:space/theme.dart';
+import 'package:space/widgets/product_grid_item.dart';
+import 'package:space/widgets/product_list_item.dart';
 import 'package:space/widgets/skeleteon_item.dart';
 
 class SearchResultPage extends StatelessWidget {
@@ -138,7 +140,8 @@ class SearchResultPage extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        buildLoading(),
+        // buildLoading(),
+        buildList(),
       ],
     );
   }
@@ -160,6 +163,63 @@ class SearchResultPage extends StatelessWidget {
   }
 
   Widget buildGrid() {
-    return Container();
+    return Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 18,
+      runSpacing: 18,
+      children: [
+        ProductGridItem(
+          title: 'Poan Chair',
+          imageUrl: 'assets/image_product_grid1.png',
+          price: 34,
+          isWishlist: false,
+        ),
+        ProductGridItem(
+          title: 'Poan Chair',
+          imageUrl: 'assets/image_product_grid2.png',
+          price: 34,
+          isWishlist: true,
+        ),
+        ProductGridItem(
+          title: 'Poan Chair',
+          imageUrl: 'assets/image_product_grid3.png',
+          price: 34,
+          isWishlist: false,
+        ),
+        ProductGridItem(
+          title: 'Poan Chair',
+          imageUrl: 'assets/image_product_grid4.png',
+          price: 34,
+          isWishlist: false,
+        ),
+      ],
+    );
+  }
+
+  Widget buildList() {
+    return Column(
+      children: [
+        ProductListItem(
+          title: 'Poan Chair',
+          price: 34,
+          imageUrl: 'assets/image_product_list1.png',
+        ),
+        ProductListItem(
+          title: 'Poan Chair',
+          price: 34,
+          imageUrl: 'assets/image_product_list2.png',
+        ),
+        ProductListItem(
+          title: 'Poan Chair',
+          price: 34,
+          imageUrl: 'assets/image_product_list3.png',
+        ),
+        ProductListItem(
+          title: 'Poan Chair',
+          price: 34,
+          imageUrl: 'assets/image_product_list4.png',
+        ),
+      ],
+    );
   }
 }

@@ -4,8 +4,26 @@ import 'package:space/widgets/product_grid_item.dart';
 import 'package:space/widgets/product_list_item.dart';
 import 'package:space/widgets/skeleteon_item.dart';
 
-class SearchResultPage extends StatelessWidget {
+class SearchResultPage extends StatefulWidget {
   const SearchResultPage({Key? key}) : super(key: key);
+
+  @override
+  State<SearchResultPage> createState() => _SearchResultPageState();
+}
+
+class _SearchResultPageState extends State<SearchResultPage> {
+  bool isLoading = true;
+  bool isShowGrid = true;
+
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 2), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,18 +148,25 @@ class SearchResultPage extends StatelessWidget {
                 fontWeight: semiBold,
               ),
             ),
-            Image.asset(
-              'assets/icon_list.png',
-              width: 24,
-              fit: BoxFit.cover,
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  isShowGrid = !isShowGrid;
+                });
+              },
+              child: Image.asset(
+                !isShowGrid ? 'assets/icon_grid.png' : 'assets/icon_list.png',
+                width: 24,
+                fit: BoxFit.cover,
+              ),
             ),
           ],
         ),
         SizedBox(
           height: 20,
         ),
-        // buildLoading(),
-        buildList(),
+        isLoading ? buildLoading() : (isShowGrid ? buildGrid() : buildList()),
+        // buildList(),
       ],
     );
   }

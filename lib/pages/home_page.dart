@@ -30,6 +30,8 @@ class _HomePageState extends State<HomePage> {
           onTap: (value) {
             if (value == 1) {
               Navigator.pushNamed(context, '/wishlist');
+            } else if (value == 2) {
+              Navigator.pushNamed(context, '/profile');
             } else {
               Navigator.pushNamed(context, '/home');
             }

@@ -13,11 +13,13 @@ class _DetailPageState extends State<DetailPage> {
   double indicatorMargin = 5;
   int currentIndex = 1;
   bool isExpand = false;
+  bool isShowReview = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteGrayColor,
+      extendBody: true,
       body: Stack(
         children: [
           Image.asset(
@@ -52,8 +54,8 @@ class _DetailPageState extends State<DetailPage> {
           ),
           SizedBox.expand(
             child: DraggableScrollableSheet(
-              initialChildSize: 0.32,
-              minChildSize: 0.32,
+              initialChildSize: 0.4,
+              minChildSize: 0.4,
               maxChildSize: 0.95,
               builder: (BuildContext build, ScrollController scrollController) {
                 return Container(
@@ -232,69 +234,103 @@ class _DetailPageState extends State<DetailPage> {
           )
         ],
       ),
-      bottomNavigationBar: isExpand
+      bottomNavigationBar: isShowReview
           ? null
-          : Container(
-              height: 96,
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(20),
-                ),
-                color: kWhiteColor,
-                boxShadow: [
-                  BoxShadow(
-                    color: kGrayColor,
-                    blurRadius: 5,
-                    offset: Offset(5, 2),
-                  )
-                ],
-              ),
-              child: Row(
-                children: [
-                  Container(
-                    width: 56,
-                    height: 56,
-                    margin: EdgeInsets.only(
-                      right: 16,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: kWhiteGrayColor,
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/icon_cart.png',
-                        width: 24,
-                        height: 24,
-                      ),
+          : isExpand
+              ? Container(
+                  width: double.infinity,
+                  height: 315,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        kWhiteColor.withOpacity(0.5),
+                        kWhiteColor,
+                      ],
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      height: 56,
-                      child: TextButton(
-                        onPressed: () {},
-                        style: TextButton.styleFrom(
-                          backgroundColor: kBlackColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(14),
-                          ),
-                        ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          setState(() {
+                            isShowReview = true;
+                          });
+                        },
                         child: Text(
-                          'Buy Now',
-                          style: whiteTextStyle.copyWith(
-                            fontSize: 18,
+                          'See More',
+                          style: blueTextStyle.copyWith(
+                            fontSize: 16,
                             fontWeight: semiBold,
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                )
+              : Container(
+                  height: 96,
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(20),
                     ),
-                  )
-                ],
-              ),
-            ),
+                    color: kWhiteColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: kGrayColor,
+                        blurRadius: 5,
+                        offset: Offset(5, 2),
+                      )
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 56,
+                        height: 56,
+                        margin: EdgeInsets.only(
+                          right: 16,
+                        ),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: kWhiteGrayColor,
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            'assets/icon_cart.png',
+                            width: 24,
+                            height: 24,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          width: double.infinity,
+                          height: 56,
+                          child: TextButton(
+                            onPressed: () {},
+                            style: TextButton.styleFrom(
+                              backgroundColor: kBlackColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(14),
+                              ),
+                            ),
+                            child: Text(
+                              'Buy Now',
+                              style: whiteTextStyle.copyWith(
+                                fontSize: 18,
+                                fontWeight: semiBold,
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
     );
   }
 

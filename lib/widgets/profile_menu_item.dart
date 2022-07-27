@@ -4,11 +4,13 @@ import 'package:space/theme.dart';
 class ProfileMenuItem extends StatelessWidget {
   final String iconUrl;
   final String title;
+  final bool isDarkMode;
 
   const ProfileMenuItem({
     Key? key,
     required this.iconUrl,
     required this.title,
+    this.isDarkMode = false,
   }) : super(key: key);
 
   @override
@@ -23,6 +25,7 @@ class ProfileMenuItem extends StatelessWidget {
             iconUrl,
             width: 24,
             fit: BoxFit.cover,
+            color: isDarkMode ? kWhiteColor : null,
           ),
           SizedBox(
             width: 20,
@@ -32,12 +35,13 @@ class ProfileMenuItem extends StatelessWidget {
             style: blackTextStyle.copyWith(
               fontSize: 18,
               fontWeight: semiBold,
+              color: isDarkMode ? kWhiteColor : kBlackColor,
             ),
           ),
           Spacer(),
           Icon(
             Icons.chevron_right,
-            color: kGrayColor,
+            color: isDarkMode ? kWhiteColor : kGrayColor,
           ),
         ],
       ),

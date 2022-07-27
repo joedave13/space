@@ -10,6 +10,8 @@ Color kWhiteColor = Color(0xffFFFFFF);
 Color kRedColor = Color(0xffFF314A);
 Color kYellowColor = Color(0xffFFBA00);
 Color kBlueColor = Color(0xff2972FF);
+Color kDarkColor = Color(0xff1F1D2B);
+Color kBlueDarkColor = Color(0xff252836);
 
 TextStyle blackTextStyle = GoogleFonts.nunito(
   color: kBlackColor,

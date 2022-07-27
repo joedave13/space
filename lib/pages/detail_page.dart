@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:space/theme.dart';
+import 'package:space/widgets/review_item.dart';
 
 class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
@@ -75,6 +76,7 @@ class _DetailPageState extends State<DetailPage> {
                         } else {
                           setState(() {
                             isExpand = false;
+                            isShowReview = false;
                           });
                         }
                       }
@@ -223,6 +225,58 @@ class _DetailPageState extends State<DetailPage> {
                                 height: 1.8,
                               ),
                             ),
+                            SizedBox(
+                              height: 50,
+                            ),
+                            isShowReview
+                                ? Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Review',
+                                        style: blackTextStyle.copyWith(
+                                          fontSize: 24,
+                                          fontWeight: semiBold,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      ReviewItem(
+                                        name: 'Lydia Clayton',
+                                        imageUrl: 'assets/image_reviewer1.png',
+                                        review:
+                                            'Open repair of infrarenal aortic aneurysm or dissection, plus of a repair of associated arterial...',
+                                        items: [
+                                          'assets/image_product_list1.png',
+                                          'assets/image_product_list2.png',
+                                          'assets/image_product_list3.png',
+                                        ],
+                                      ),
+                                      ReviewItem(
+                                        name: 'Audra Still',
+                                        imageUrl: 'assets/image_reviewer2.png',
+                                        review:
+                                            'Open repair of infrarenal aortic aneurysm or dissection, plus of a repair of associated arterial...',
+                                        items: [
+                                          'assets/image_product_list2.png',
+                                          'assets/image_product_list3.png',
+                                        ],
+                                      ),
+                                      ReviewItem(
+                                        name: 'Joan Gray',
+                                        imageUrl: 'assets/image_reviewer3.png',
+                                        review:
+                                            'Open repair of infrarenal aortic aneurysm or dissection, plus of a repair of associated arterial...',
+                                        items: [
+                                          'assets/image_product_list4.png',
+                                          'assets/image_product_list1.png',
+                                        ],
+                                      ),
+                                    ],
+                                  )
+                                : SizedBox(),
                           ],
                         ),
                       ),
